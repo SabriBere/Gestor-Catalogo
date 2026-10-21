@@ -1,9 +1,20 @@
 
+using System.Globalization;
+
 public class ProductoRepository : IProductoRepository
 {
-    private readonly List<Producto> _productos = new();
+    private readonly List<Producto> _productos;
 
-    //colocar metodos con LINQ
+    public ProductoRepository()
+    {
+        _productos = new List<Producto>
+        {
+            new Producto(1, "Teclado", 25000m, "Periféricos", true),
+            new Producto(2, "Mouse", 15000m, "Periféricos", true),
+            new Producto(3, "Monitor", 250000m, "Pantallas", true),
+            new Producto(4, "Notebook", 900000m, "Computadoras", false)
+        };
+    }
 
     public void Agregar(Producto producto)
     {
@@ -14,21 +25,25 @@ public class ProductoRepository : IProductoRepository
     {
         productos.ForEach(producto => _productos.Add(producto));
     }
+
     public List<Producto> ObtenerTodos()
     {
         return _productos.ToList();
     }
     public Producto? ObtenerPorId(int id)
     {
-         //manejo de errores para el id, sino existe
         return _productos.FirstOrDefault(producto => producto.Id == id);
     }
     public List<Producto> BuscarPorCategoria(string categoria)
     {
-        //manejo de errores para la categoria, sino existe
-        return _productos.Where(producto => producto.Categoria.Trim().Equals(
+        CompareInfo comparador = CultureInfo.GetCultureInfo("es-AR").CompareInfo;
+
+        return _productos
+            .Where(producto => comparador.Compare(
+                producto.Categoria.Trim(),
                 categoria.Trim(),
-                StringComparison.OrdinalIgnoreCase
-            )).ToList();
+                CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace
+            ) == 0)
+            .ToList();
     }
 }
