@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Gestor-Catalogo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+397e975cd016f9dfd2dcd81988e59bfda1cbe872")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22d64deb8aa23dcbf8b7a0cf5373583bda1131c7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Gestor-Catalogo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Gestor-Catalogo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
