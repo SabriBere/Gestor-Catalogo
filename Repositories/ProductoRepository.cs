@@ -21,11 +21,6 @@ public class ProductoRepository : IProductoRepository
         _productos.Add(producto);
     }
 
-    public void AgregarVarios(List<Producto> productos)
-    {
-        productos.ForEach(producto => _productos.Add(producto));
-    }
-
     public List<Producto> ObtenerTodos()
     {
         return _productos.ToList();
