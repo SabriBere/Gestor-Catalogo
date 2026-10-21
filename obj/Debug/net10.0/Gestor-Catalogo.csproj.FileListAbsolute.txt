@@ -12,3 +12,4 @@
 /Users/sdemetrio/Documents/Gestor-Catalogo/obj/Debug/net10.0/Gestor-Catalogo.pdb
 /Users/sdemetrio/Documents/Gestor-Catalogo/obj/Debug/net10.0/Gestor-Catalogo.genruntimeconfig.cache
 /Users/sdemetrio/Documents/Gestor-Catalogo/obj/Debug/net10.0/ref/Gestor-Catalogo.dll
+/Users/sdemetrio/Documents/Gestor-Catalogo/obj/Debug/net10.0/Gestor-Catalogo.sourcelink.json

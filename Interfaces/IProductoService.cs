@@ -1,10 +1,8 @@
 
 public interface IProductoService
 {
-
-    //listado de productos
     void Agregar(Producto producto);
     List<Producto> ObtenerTodos();
-    Producto ObtenerPorId(int id);
+    Producto? ObtenerPorId(int id);
     List<Producto> BuscarPorCategoria(string categoria);
 }
