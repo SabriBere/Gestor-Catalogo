@@ -1,10 +1,10 @@
-# Práctico - Gestor de Catálogo en Consola
+# Consigna Oficial: Práctico del Bloque 1
 
-## Consigna
+## Gestión de Productos en Consola
 
 ### Objetivo
 
-Aplicar los fundamentos de Programación Orientada a Objetos (POO), diseño con interfaces, manipulación de listas en memoria (`List<T>`) y consultas con LINQ en una aplicación de consola desarrollada en C#.
+Aplicar los fundamentos de Programación Orientada a Objetos (POO), diseño con interfaces, manipulación de listas en memoria (`List<T>`) y consultas con LINQ en una aplicación C# de consola.
 
 ### Descripción del problema
 
@@ -12,7 +12,7 @@ Una tienda local necesita un prototipo simple para gestionar sus productos en me
 
 ### Requerimientos técnicos
 
-#### Modelo de dominio (`Producto`)
+#### 1. Modelo de Dominio (`Producto`)
 
 Crear la clase `Producto` con las siguientes propiedades automáticas:
 
@@ -22,9 +22,9 @@ Crear la clase `Producto` con las siguientes propiedades automáticas:
 - `Categoria` (`string`)
 - `Activo` (`bool`)
 
-#### Interfaz de contrato (`IProductoRepository`)
+#### 2. Interfaz de Contrato (`IProductoRepository`)
 
-Definir una interfaz con los métodos necesarios para operar sobre los productos:
+Definir una interfaz que establezca las operaciones sobre los productos:
 
 ```csharp
 void Agregar(Producto producto);
@@ -33,18 +33,23 @@ Producto ObtenerPorId(int id);
 List<Producto> BuscarPorCategoria(string categoria);
 ```
 
-#### Implementación en memoria (`ProductoRepository`)
+#### 3. Implementación en Memoria (`ProductoRepository`)
 
 - Crear una clase que implemente la interfaz `IProductoRepository`.
-- Utilizar una colección privada `List<Producto>` para almacenar temporalmente los registros.
-- Implementar las búsquedas y los filtros mediante los métodos de extensión de LINQ `Where`, `FirstOrDefault` y `ToList`.
+- Utilizar una `List<Producto>` privada para almacenar los registros de forma temporal.
+- Inicializar la lista en el constructor con 3 o 4 productos de prueba por defecto (*seed data*).
+- Implementar las búsquedas y los filtrados utilizando métodos de extensión de LINQ (`Where`, `FirstOrDefault`, `ToList`).
 
-#### Ejecución (`Program.cs`)
+#### 4. Ejecución (`Program.cs`)
 
-- Instanciar directamente la clase del repositorio en `Program.cs`.
-- Cargar al menos tres o cuatro productos de prueba al iniciar la aplicación.
-- Mostrar en la consola:
+- Instanciar la clase del repositorio (`IProductoRepository repo = new ProductoRepository();`) en `Program.cs`.
+- Probar en la consola:
   - La lista completa de productos.
   - La búsqueda de un producto por su ID.
-  - Los productos filtrados por categoría.
+  - El filtrado de productos por categoría.
+  - La incorporación de un nuevo producto usando `Agregar(...)`.
+
+## Entrega
+
+Se entrega como archivo PDF o ZIP, enlace al repositorio, código o texto.
 
