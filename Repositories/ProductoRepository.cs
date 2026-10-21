@@ -1,5 +1,5 @@
 
-public class ProductoService : IProductoService
+public class ProductoRepository : IProductoRepository
 {
     private readonly List<Producto> _productos = new();
 
@@ -26,6 +26,9 @@ public class ProductoService : IProductoService
     public List<Producto> BuscarPorCategoria(string categoria)
     {
         //manejo de errores para la categoria, sino existe
-        return _productos.Where(producto => producto.Categoria == categoria).ToList();
+        return _productos.Where(producto => producto.Categoria.Trim().Equals(
+                categoria.Trim(),
+                StringComparison.OrdinalIgnoreCase
+            )).ToList();
     }
 }

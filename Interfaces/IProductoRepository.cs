@@ -1,5 +1,5 @@
 
-public interface IProductoService
+public interface IProductoRepository
 {
     void Agregar(Producto producto);
     void AgregarVarios(List<Producto> productos);
