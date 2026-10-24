@@ -1,10 +1,7 @@
-using System.Globalization;
 using GestorCatalogo.DataAccessLayer.Interfaces;
 using GestorCatalogo.DataAccessLayer.Models;
 
 namespace GestorCatalogo.DataAccessLayer.Repositories;
-
-using System.Globalization;
 
 public class ProductoRepositoryInMemory : IProductoRepository
 {
