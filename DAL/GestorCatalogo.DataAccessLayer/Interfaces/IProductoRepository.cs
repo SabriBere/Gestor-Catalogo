@@ -1,4 +1,6 @@
+using GestorCatalogo.DataAccessLayer.Models;
 
+namespace GestorCatalogo.DataAccessLayer.Interfaces;
 public interface IProductoRepository
 {
     void Agregar(Producto producto);

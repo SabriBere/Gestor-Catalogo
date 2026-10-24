@@ -1,4 +1,4 @@
-
+namespace GestorCatalogo.DataAccessLayer.Models;
 
 public class Producto
 {

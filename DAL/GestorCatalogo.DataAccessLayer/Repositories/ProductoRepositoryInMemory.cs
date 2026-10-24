@@ -1,11 +1,16 @@
+using System.Globalization;
+using GestorCatalogo.DataAccessLayer.Interfaces;
+using GestorCatalogo.DataAccessLayer.Models;
+
+namespace GestorCatalogo.DataAccessLayer.Repositories;
 
 using System.Globalization;
 
-public class ProductoRepository : IProductoRepository
+public class ProductoRepositoryInMemory : IProductoRepository
 {
     private readonly List<Producto> _productos;
 
-    public ProductoRepository()
+    public ProductoRepositoryInMemory()
     {
         _productos = new List<Producto>
         {
