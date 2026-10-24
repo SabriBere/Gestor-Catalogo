@@ -1,8 +1,17 @@
+using GestorCatalogo.BusinessLayer.Interfaces;
+using GestorCatalogo.BusinessLayer.Services;
+using GestorCatalogo.DataAccessLayer.Interfaces;
+using GestorCatalogo.DataAccessLayer.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IProductoService, ProductoService>();
+builder.Services.AddScoped<IProductoRepository, ProductoRepositoryInMemory>();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi(options =>
 {

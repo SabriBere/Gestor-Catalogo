@@ -1,69 +1,92 @@
 using Microsoft.AspNetCore.Mvc;
-
+using GestorCatalogo.BusinessLayer.DTOs.Response;
+using GestorCatalogo.BusinessLayer.DTOs.Request;
+using GestorCatalogo.BusinessLayer.Interfaces;
 
 namespace GestorCatalogo.PresentationLayer;
 
 [ApiController]
-[Route("/api/[controller]/[action]")]
+[Route("api/productos")]
 [Tags("Productos")]
 
 public class ProductosController : ControllerBase
 {
-    // private readonly IProductoService _productoService;
+    private readonly IProductoService _productoService;
 
-    // public ProdcutoController(IProductoService productoService)
-    // {
-    //     _productoService = productoService;
-    // }
+    public ProductosController(IProductoService productoService)
+    {
+        _productoService = productoService;
+    }
 
-    // [HttpGet("/api/productos")]
-    // [EndpointSummary("Consultar listado de productos")]
+    [HttpGet]
+    [EndpointSummary("Consultar listado de productos")]
+
+    public IActionResult ObtenerListadoProducto()
+    {
+        return Ok(_productoService.ObtenerTodos());
+
+    }
+
+    [HttpGet("{id:int}")]
+    [EndpointSummary("Consultar un producto especifico por ID")]
+
+    public IActionResult ObtenerProductoId(int id)
+    {
+        ProductoDto? producto = _productoService.ObtenerPorId(id);
+
+        if(producto is null)
+        {
+            return NotFound($"No se encontró un producto con el ID {id}");
+        }
+
+        return Ok(producto);
+    }
+
+    [HttpPost]
+    [EndpointSummary("Alta de productos")]
+
+    // usar CrearProductoDto
+    public IActionResult CrearProducto([FromBody] CreateProductoDto producto)
+    {
+        ProductoDto productoCreado = _productoService.CrearProducto(producto);
+            return CreatedAtAction(
+                nameof(ObtenerProductoId),
+                new { id = productoCreado.Id },
+                productoCreado
+            );
+    }
+
+    [HttpPut("{id:int}")]
+    [EndpointSummary("Modificar un producto")]
 
     //usar CrearProductoDto
-    // public async Task<IActionResult> ObtenerListadoProducto()
-    // {
-        
-    //     //usar created action con status 200
-    // }
+    public IActionResult ModificarProductos(int id, [FromBody] CreateProductoDto modificarProducto)
+    {
+        ProductoDto? productoModificado = _productoService.ModificarProducto(id, modificarProducto);
 
-    // [HttpGet("/api/productos/{id:int}")]
-    // [EndpointSummary("Consultar un producto especifico por ID")]
+        if(productoModificado is null)
+        {
+            return NotFound($"No se encontró un producto con el ID {id}");
+        }
 
-    // public async Task<IActionResult> ObtenerProductoId()
-    // {
-        
-    //     //usar created action con status 200 y 404 si no existe
-    // }
+        return Ok(productoModificado);
+    }
 
-    // [HttpPost("/api/productos")]
-    // [EndpointSummary("Alta de productos")]
+    [HttpDelete("{id:int}")]
+    [EndpointSummary("Eliminar un producto")]
 
-    //usar CrearProductoDto
-    // public async Task<IActionResult> CrearProductos()
-    // {
-        
-    //     //usar created action con status 201
-    // }
+    // usar CrearProductoDto
+    public IActionResult EliminarProductos(int id)
+    {
+        bool eliminado = _productoService.EliminarProducto(id);
 
-    // [HttpPut("/api/productos/{id:int}")]
-    // [EndpointSummary("Modificar un producto")]
-
-    //usar CrearProductoDto
-    // public async Task<IActionResult> ModificarProductos()
-    // {
-        
-    //     //usar created action con status 200, 404 si no lo encuentra y 400 bad request
-    // }
-
-    // [HttpDelete("/api/productos/{id:int}")]
-    // [EndpointSummary("Eliminar un producto")]
-
-    //usar CrearProductoDto
-    // public async Task<IActionResult> EliminarProductos()
-    // {
-        
-    //     //usar created action con status 204, 404 si no lo encuentra
-    // }
+        if (!eliminado)
+        {
+            return NotFound($"No se encontró un producto con el ID {id}");
+        }
+        //usar created action con status 204, 404 si no lo encuentra
+        return NoContent();
+    }
 
 
 }

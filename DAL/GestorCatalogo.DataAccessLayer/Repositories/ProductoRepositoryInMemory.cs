@@ -8,22 +8,23 @@ using System.Globalization;
 
 public class ProductoRepositoryInMemory : IProductoRepository
 {
-    private readonly List<Producto> _productos;
-
-    public ProductoRepositoryInMemory()
+    private static readonly List<Producto> _productos = new()
     {
-        _productos = new List<Producto>
-        {
-            new Producto(1, "Teclado", 25000m, "Periféricos", true),
-            new Producto(2, "Mouse", 15000m, "Periféricos", true),
-            new Producto(3, "Monitor", 250000m, "Pantallas", true),
-            new Producto(4, "Notebook", 900000m, "Computadoras", false)
-        };
-    }
+        new Producto(1, "Teclado", 25000m, "Periféricos", true),
+        new Producto(2, "Mouse", 15000m, "Periféricos", true),
+        new Producto(3, "Monitor", 250000m, "Pantallas", true),
+        new Producto(4, "Notebook", 900000m, "Computadoras", false)
+    };
 
-    public void Agregar(Producto producto)
+    public Producto Agregar(Producto producto)
     {
+        producto.Id = _productos.Count > 0
+        ? _productos.Max(p => p.Id) + 1
+        : 1;
+
         _productos.Add(producto);
+
+        return producto;
     }
 
     public List<Producto> ObtenerTodos()
@@ -34,16 +35,33 @@ public class ProductoRepositoryInMemory : IProductoRepository
     {
         return _productos.FirstOrDefault(producto => producto.Id == id);
     }
-    public List<Producto> BuscarPorCategoria(string categoria)
-    {
-        CompareInfo comparador = CultureInfo.GetCultureInfo("es-AR").CompareInfo;
 
-        return _productos
-            .Where(producto => comparador.Compare(
-                producto.Categoria.Trim(),
-                categoria.Trim(),
-                CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace
-            ) == 0)
-            .ToList();
+    public Producto? Modificar(int id, Producto producto)
+    {
+        Producto? productoExiste = _productos.FirstOrDefault(producto => producto.Id == id);
+
+        if(productoExiste is null)
+        {
+            return null;
+        }
+
+        productoExiste.Nombre = producto.Nombre;
+        productoExiste.Precio = producto.Precio;
+        productoExiste.Categoria = producto.Categoria;
+        productoExiste.Activo = producto.Activo;
+
+        return productoExiste;
+    }
+
+    public bool Eliminar(int id)
+    {
+        Producto? productoExiste = _productos.FirstOrDefault(producto => producto.Id == id);
+
+        if(productoExiste is null)
+        {
+            return false;
+        }
+
+        return _productos.Remove(productoExiste);
     }
 }

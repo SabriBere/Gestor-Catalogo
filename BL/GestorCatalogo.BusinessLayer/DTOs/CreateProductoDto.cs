@@ -8,13 +8,13 @@ namespace GestorCatalogo.BusinessLayer.DTOs.Request;
 public class CreateProductoDto
 {
     [Required, StringLength(100, MinimumLength = 3)]
-    public string Nombre { get; set; }
+    public string Nombre { get; set; } = string.Empty;
 
     [Required, Range(0.01, double.MaxValue, ErrorMessage = "El precio debe ser mayor a 0.")]
     public decimal Precio { get; set; }
 
     [Required]
-    public string Categoria { get; set; }
+    public string Categoria { get; set; } = string.Empty;
 
-    // public bool Activo { get; set; } se crea por default como Activo = true;
+    public bool Activo { get; set; } //se crea por default como Activo = true;
 }
