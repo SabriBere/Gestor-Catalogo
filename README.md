@@ -2,19 +2,6 @@
 
 > **Nota para la corrección:** se requiere tener instalado el SDK de **.NET 10**. Los siguientes comandos deben ejecutarse desde la carpeta raíz del repositorio.
 
-Clonar específicamente la rama que contiene la Web API:
-
-```bash
-git clone \
-  --branch feature/web-api-restful \
-  --single-branch \
-  https://github.com/SabriBere/Gestor-Catalogo.git
-
-cd Gestor-Catalogo
-```
-
-> La rama `main` conserva el práctico de consola del Bloque 1. La Web API RESTful del Bloque 2 se encuentra en `feature/web-api-restful`.
-
 Restaurar las dependencias y compilar la solución:
 
 ```bash
