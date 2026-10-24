@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BL\GestorCatalogo.BusinessLayer\GestorCatalogo.BusinessLayer.csproj" />
+    <ProjectReference Include="..\..\DAL\GestorCatalogo.DataAccessLayer\GestorCatalogo.DataAccessLayer.csproj" />
+  </ItemGroup>
+
 </Project>
