@@ -1,2 +1,11 @@
 <Solution>
+  <Folder Name="/BL/">
+    <Project Path="BL/GestorCatalogo.BusinessLayer/GestorCatalogo.BusinessLayer.csproj" />
+  </Folder>
+  <Folder Name="/DAL/">
+    <Project Path="DAL/GestorCatalogo.DataAccessLayer/GestorCatalogo.DataAccessLayer.csproj" />
+  </Folder>
+  <Folder Name="/PL/">
+    <Project Path="PL/GestorCatalogo.PresentationLayer/GestorCatalogo.PresentationLayer.csproj" />
+  </Folder>
 </Solution>
