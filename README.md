@@ -1,3 +1,32 @@
+# Cómo ejecutar la solución
+
+> **Nota para la corrección:** se requiere tener instalado el SDK de **.NET 10**. Los siguientes comandos deben ejecutarse desde la carpeta raíz del repositorio.
+
+Restaurar las dependencias y compilar la solución:
+
+```bash
+dotnet restore GestorCatalogo.slnx
+dotnet build GestorCatalogo.slnx
+```
+
+Iniciar la Web API con el perfil HTTP:
+
+```bash
+dotnet run \
+  --project PL/GestorCatalogo.PresentationLayer \
+  --launch-profile http
+```
+
+Una vez iniciada, ae abre autoamticamente Swagger UI en:
+
+```text
+http://localhost:5185/swagger
+```
+
+Desde Swagger se pueden probar los endpoints `GET`, `POST`, `PUT` y `DELETE` de `/api/productos`. Los datos se almacenan en memoria y se restablecen al reiniciar la aplicación. Para detenerla, presionar `Ctrl+C` en la terminal.
+
+---
+
 # Consigna Oficial: Práctico del Bloque 2
 
 ## Web API RESTful de Gestión de Productos en 3 Capas
@@ -44,7 +73,3 @@ El prototipo de consola desarrollado en el Bloque 1 necesita evolucionar a una A
 - Registrar los servicios e interfaces en el contenedor de .NET con sus correspondientes ciclos de vida:
   - `AddScoped` para el servicio.
   - `AddScoped` para el repositorio.
-
-### Ejecución Práctico del Bloque 2
-
-<!-- Branch -->
